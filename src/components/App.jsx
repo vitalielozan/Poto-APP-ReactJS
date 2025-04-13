@@ -1,20 +1,20 @@
 import './App.css';
-import Titlu from './Titlu';
-import MyComponent from './MyComponent';
-import List from './List';
+import Gallery from './Gallery';
+import Photo from './Photo';
+import Error from './Error';
 
 function App() {
   const name = 'Eu sunt Vitalie Lozan';
 
   return (
     <>
-      <div className="App">
-        <header className="App-header">
-          <h1>Salutare din React !</h1>
+      <div className="app-container">
+        <header className="app-header">
+          <h1>Galeria mea Foto !</h1>
           <h2>{name}</h2>
-          <Titlu titlu="Incepem cursul React JS" />
-          <MyComponent />
-          <List />
+          <Gallery />
+          <Photo />
+          <Error />
         </header>
       </div>
     </>
