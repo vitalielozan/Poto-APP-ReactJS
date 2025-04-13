@@ -1,4 +1,4 @@
-# React + Vite
+## PHOTO-APP React JS
 
 👋 Hi, I’m @vitalielozan
 
@@ -6,11 +6,13 @@
 
 🌱 I’m currently learning HTML&CSS, JavaScript, React
 
-##Technology
+## Technology
+
+- JavaScript
 
 - React JS
 
-## CURS REACT PHOTO APP
+# React + Vite
 
 - This project was create with Vite.
 
