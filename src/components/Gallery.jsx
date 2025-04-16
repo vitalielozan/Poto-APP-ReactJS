@@ -1,16 +1,28 @@
 import { Link } from 'react-router-dom';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import data from './data/photos.json';
 import './Gallery.css';
 import Title from './Title';
 
+const getLikesFromStorage = () => {
+  const likes = localStorage.getItem('likes');
+  return likes ? JSON.parse(likes) : {};
+};
+
 function Gallery() {
   const photos = data.fotos;
-  const [likes, setLikes] = useState(0);
+  const [likes, setLikes] = useState(getLikesFromStorage);
 
-  const handleLike = () => {
-    setLikes(likes + 1);
+  const handleLike = (photoId) => {
+    setLikes((prev) => {
+      const newLike = { ...prev, [photoId]: (prev[photoId] || 0) + 1 };
+      return newLike;
+    });
   };
+
+  useEffect(() => {
+    localStorage.setItem('likes', JSON.stringify(likes));
+  }, [likes]);
 
   return (
     <>
@@ -32,14 +44,17 @@ function Gallery() {
                     <h5 className="card-title">{photo.title}</h5>
                     <div className="card-text description">
                       {' '}
-                      ${photo.shortDesc}
+                      {photo.shortDesc}
                     </div>
                   </div>
                   <div className="like-section">
-                    <button className="btn btn-like" onClick={handleLike}>
+                    <button
+                      className="btn btn-like"
+                      onClick={() => handleLike(photo.id)}
+                    >
                       👍 Like
                     </button>
-                    <span>{likes} likes</span>
+                    <span>{likes[photo.id]} likes</span>
                   </div>
                   <Link to={`/photo/${photo.id}`}>
                     <button className="btn btn-see-more mt-2">See More</button>
