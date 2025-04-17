@@ -8,7 +8,7 @@ function GalleryHeader() {
         <Link to="/" className="navbar-brand">
           <h1>Galerie Foto</h1>
         </Link>
-        <h3>Galeria foto cu ReactJS</h3>
+        <h3>Galeria mea foto cu ReactJS</h3>
       </div>
     </>
   );
