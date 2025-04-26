@@ -3,7 +3,7 @@ import { Link } from 'react-router';
 
 const GalleryCard = ({ photo, handleIncreaseLike }) => {
   return (
-    <div className="col-md-4 mb-4">
+    <div className="col-lg-4 col-md-6 mb-4">
       <div className="card gallery-card h-100">
         <div className="img-wrapper">
           <img

@@ -2,6 +2,7 @@ import { useParams } from 'react-router-dom';
 import { useState } from 'react';
 import data from './data/photos.json';
 import Title from './Title';
+import './Photo.css';
 
 function Photo() {
   const { id } = useParams();
@@ -28,13 +29,13 @@ function Photo() {
   return (
     <>
       <Title />
-      <div className="container">
+      <div className="container photo-container">
         <div className="row">
-          <div className="card mb-5">
+          <div className="col-md-8 col col-sm-6 mb-5">
             <img
               src={photo.srcImage}
               alt={photo.title}
-              className="card-img-top"
+              className="card-img-top rounded"
             />
             <div className="card-body">
               <h3 className="card-title">{photo.title}</h3>
