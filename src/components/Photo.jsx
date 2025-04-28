@@ -1,18 +1,54 @@
 import { useParams } from 'react-router-dom';
-import { useState } from 'react';
-import data from './data/photos.json';
+import { useState, useEffect } from 'react';
+import axios from 'axios';
 import Title from './Title';
 import './Photo.css';
 
 function Photo() {
   const { id } = useParams();
-  const photo = data.fotos.find((p) => p.id === parseInt(id));
-  const [comments, setComments] = useState(photo?.comments || []);
+  const [photos, setPhotos] = useState([]);
+  const [comments, setComments] = useState([]);
   const [newComment, setNewComment] = useState({ author: '', text: '' });
+  const [loading, setLoading] = useState(true);
 
+  useEffect(() => {
+    const fetchPhotos = async () => {
+      try {
+        const response = await axios.get('http://localhost:3001/photos');
+        setTimeout(() => {
+          setPhotos(response.data);
+          setLoading(false);
+        }, 1500);
+      } catch (error) {
+        console.error('Eroare la incarcare:', error);
+        setLoading(false);
+      }
+    };
+    fetchPhotos();
+  }, []);
+
+  const photo = photos.find((p) => p.id === parseInt(id));
+
+  useEffect(() => {
+    if (photo) {
+      setComments(photo.comments || []);
+    }
+  }, [photo]);
+
+  if (loading)
+    return (
+      <div
+        className="d-flex justify-content-center align-items-center"
+        style={{ height: '50vh' }}
+      >
+        <div className="spinner-grow text-success" role="status">
+          <span className="visually-hidden">Loading...</span>
+        </div>
+      </div>
+    );
   if (!photo) return <p>Fotografia nu a fost găsită.</p>;
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!newComment.author || !newComment.text) return;
 
@@ -22,8 +58,17 @@ function Photo() {
       text: newComment.text,
     };
 
-    setComments([...comments, newCom]);
+    const updatedComments = [...comments, newCom];
+    setComments(updatedComments);
     setNewComment({ author: '', text: '' });
+
+    try {
+      await axios.patch(`http://localhost:3001/photos/${photo.id}`, {
+        comments: updatedComments,
+      });
+    } catch (error) {
+      console.error('Eroare la salvarea comentariului:', error);
+    }
   };
 
   return (

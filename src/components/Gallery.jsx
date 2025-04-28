@@ -1,23 +1,57 @@
 import { useEffect, useState } from 'react';
-import data from './data/photos.json';
+import axios from 'axios';
 import './Gallery.css';
 import Title from './Title';
 import GalleryCard from './GalleryCard';
 
 function Gallery() {
   const [photos, setPhotos] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const handleIncreaseLike = async (photoId) => {
+    const photoToUpdate = photos.find((photo) => photo.id === photoId);
+    if (!photoToUpdate) return;
 
-  const handleIncreaseLike = (photoId) => {
-    setPhotos((prev) =>
-      prev.map((photo) =>
-        photo.id === photoId ? { ...photo, like: photo.like + 1 } : photo
-      )
-    );
+    try {
+      await axios.patch(`http://localhost:3001/photos/${photoId}`, {
+        like: photoToUpdate.like + 1,
+      });
+
+      setPhotos((prev) =>
+        prev.map((photo) =>
+          photo.id === photoId ? { ...photo, like: photo.like + 1 } : photo
+        )
+      );
+    } catch (error) {
+      console.error('Eroare la actualizarea like-ului:', error);
+    }
   };
 
   useEffect(() => {
-    setPhotos(data.fotos);
+    const fetchPhotos = async () => {
+      try {
+        const response = await axios.get('http://localhost:3001/photos');
+        setTimeout(() => {
+          setPhotos(response.data);
+          setLoading(false);
+        }, 1500);
+      } catch (error) {
+        console.error('Eroare la incarcare:', error);
+      }
+    };
+    fetchPhotos();
   }, []);
+
+  if (loading)
+    return (
+      <div
+        className="d-flex justify-content-center align-items-center"
+        style={{ height: '50vh' }}
+      >
+        <div className="spinner-grow text-success" role="status">
+          <span className="visually-hidden">Loading...</span>
+        </div>
+      </div>
+    );
 
   return (
     <>
