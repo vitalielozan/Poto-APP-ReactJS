@@ -7,6 +7,7 @@ import GalleryCard from './GalleryCard';
 function Gallery() {
   const [photos, setPhotos] = useState([]);
   const [loading, setLoading] = useState(true);
+
   const handleIncreaseLike = async (photoId) => {
     const photoToUpdate = photos.find((photo) => photo.id === photoId);
     if (!photoToUpdate) return;
