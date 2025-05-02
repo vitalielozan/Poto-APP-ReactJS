@@ -6,7 +6,7 @@
 
 ## Photo App
 
-A React-based app to discover and save books using Open Library API and json-server.
+<img alt="version" src="https://img.shields.io/badge/version-1.0.0-blue.svg?cacheSeconds=2592000" />
 
 ## 🚀 Features
 
