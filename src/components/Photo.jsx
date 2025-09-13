@@ -15,10 +15,8 @@ function Photo() {
     const fetchPhotos = async () => {
       try {
         const response = await axios.get('http://localhost:3001/photos');
-        setTimeout(() => {
-          setPhotos(response.data);
-          setLoading(false);
-        }, 1500);
+        setPhotos(response.data);
+        setLoading(false);
       } catch (error) {
         console.error('Eroare la incarcare:', error);
         setLoading(false);
@@ -38,11 +36,11 @@ function Photo() {
   if (loading)
     return (
       <div
-        className="d-flex justify-content-center align-items-center"
+        className='d-flex justify-content-center align-items-center'
         style={{ height: '50vh' }}
       >
-        <div className="spinner-grow text-success" role="status">
-          <span className="visually-hidden">Loading...</span>
+        <div className='spinner-grow text-success' role='status'>
+          <span className='visually-hidden'>Loading...</span>
         </div>
       </div>
     );
@@ -74,51 +72,51 @@ function Photo() {
   return (
     <>
       <Title />
-      <div className="container photo-container">
-        <div className="row">
-          <div className="col-md-8 col col-sm-6 mb-5">
+      <div className='container photo-container'>
+        <div className='row'>
+          <div className='col-md-8 col col-sm-6 mb-5'>
             <img
               src={photo.srcImage}
               alt={photo.title}
-              className="card-img-top rounded"
+              className='card-img-top rounded'
             />
-            <div className="card-body">
-              <h3 className="card-title">{photo.title}</h3>
-              <p className="card-text">{photo.desc}</p>
+            <div className='card-body'>
+              <h3 className='card-title'>{photo.title}</h3>
+              <p className='card-text'>{photo.desc}</p>
 
-              <h4 className="mt-4">Comentarii</h4>
+              <h4 className='mt-4'>Comentarii</h4>
               {comments.length === 0 && <p>Fii primul care comentează!</p>}
-              <ul className="list-group mb-4">
+              <ul className='list-group mb-4'>
                 {comments.map((comment) => (
-                  <li key={comment.id} className="list-group-item">
+                  <li key={comment.id} className='list-group-item'>
                     <strong>{comment.author}:</strong> {comment.text}
                   </li>
                 ))}
               </ul>
 
               <form onSubmit={handleSubmit}>
-                <div className="mb-3">
+                <div className='mb-3'>
                   <input
-                    type="text"
-                    className="form-control"
-                    placeholder="Nume"
+                    type='text'
+                    className='form-control'
+                    placeholder='Nume'
                     value={newComment.author}
                     onChange={(e) =>
                       setNewComment({ ...newComment, author: e.target.value })
                     }
                   />
                 </div>
-                <div className="mb-3">
+                <div className='mb-3'>
                   <textarea
-                    className="form-control"
-                    placeholder="Comentariu"
+                    className='form-control'
+                    placeholder='Comentariu'
                     value={newComment.text}
                     onChange={(e) =>
                       setNewComment({ ...newComment, text: e.target.value })
                     }
                   ></textarea>
                 </div>
-                <button type="submit" className="btn btn-primary">
+                <button type='submit' className='btn btn-primary'>
                   Adaugă comentariu
                 </button>
               </form>

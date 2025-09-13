@@ -34,7 +34,7 @@ function Gallery() {
         setTimeout(() => {
           setPhotos(response.data);
           setLoading(false);
-        }, 1500);
+        }, 1000);
       } catch (error) {
         console.error('Eroare la incarcare:', error);
       }
@@ -45,11 +45,11 @@ function Gallery() {
   if (loading)
     return (
       <div
-        className="d-flex justify-content-center align-items-center"
+        className='d-flex justify-content-center align-items-center'
         style={{ height: '50vh' }}
       >
-        <div className="spinner-grow text-success" role="status">
-          <span className="visually-hidden">Loading...</span>
+        <div className='spinner-grow text-success' role='status'>
+          <span className='visually-hidden'>Loading...</span>
         </div>
       </div>
     );
@@ -57,8 +57,8 @@ function Gallery() {
   return (
     <>
       <Title />
-      <div className="container">
-        <div className="row">
+      <div className='container'>
+        <div className='row'>
           {photos?.map((photo) => (
             <GalleryCard
               key={photo.id}
