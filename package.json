@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "start-server": "json-server --watch photos.json --port 3001",
+    "server": "json-server --watch photos.json --port 3001",
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview"
