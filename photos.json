@@ -18,6 +18,11 @@
           "id": 2,
           "author": "Jane Smith",
           "text": "I love the colors in this one."
+        },
+        {
+          "id": 3,
+          "author": "Vit Loz",
+          "text": "Papillion mariposa lepidoptera this is a beautiful butterfly."
         }
       ]
     },
