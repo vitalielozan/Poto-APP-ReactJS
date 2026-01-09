@@ -34,7 +34,7 @@ function Gallery() {
         setTimeout(() => {
           setPhotos(response.data);
           setLoading(false);
-        }, 1000);
+        }, 500);
       } catch (error) {
         console.error('Eroare la incarcare:', error);
       }
