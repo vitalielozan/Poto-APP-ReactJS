@@ -1,4 +1,4 @@
-- 👋 Hi, I’m @vitalielozan
+# 👋 Hi, I’m @vitalielozan
 
 - 👀 I’m interested in FullStack Developer
 
@@ -6,7 +6,7 @@
 
 ## Photo App
 
-<img alt="version" src="https://img.shields.io/badge/version-1.0.0-blue.svg?cacheSeconds=2592000" />
+ <img alt="version" src="https://img.shields.io/badge/version-1.0.0-blue.svg?cacheSeconds=2592000" />
 
 ## 🚀 Features
 
